@@ -328,6 +328,20 @@ namespace :ruby do
     ].join(' && ')
   end
 
+  task :src191 do
+    remove_ruby_from_apt
+    run [
+      'cd /tmp',
+      'sudo rm -rf ruby-1.9.1-p378* || true',
+      'wget -q ftp://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.1-p378.tar.bz2',
+      'tar xjf ruby-1.9.1-p378.tar.bz2',
+      'cd /tmp/ruby-1.9.1-p378',
+      './configure --prefix=/usr',
+      'make',
+      'sudo make install'
+    ].join(' && ')
+  end
+
   task :install_rubygems do
     run [
       'cd /tmp',
